@@ -21,10 +21,12 @@ class EmbeddingComponent:
         match embedding_mode:
             case "local":
                 from llama_index.embeddings import HuggingFaceEmbedding
+                # from langchain.embeddings import HuggingFaceEmbeddings
 
                 self.embedding_model = HuggingFaceEmbedding(
                     model_name=settings.local.embedding_hf_model_name,
                     cache_folder=str(models_cache_path),
+                    # model_kwargs = {'device': 'cuda'},
                 )
             case "sagemaker":
 

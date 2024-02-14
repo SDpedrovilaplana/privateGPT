@@ -10,6 +10,8 @@ from private_gpt.components.llm.prompt_helper import get_prompt_style
 from private_gpt.paths import models_cache_path, models_path
 from private_gpt.settings.settings import Settings
 
+import torch
+
 logger = logging.getLogger(__name__)
 
 
@@ -42,7 +44,7 @@ class LLMComponent:
                     context_window=settings.llm.context_window,
                     generate_kwargs={},
                     # All to GPU
-                    model_kwargs={"n_gpu_layers": -1, "offload_kqv": True},
+                    model_kwargs={"torch_dtype": torch.float16,"n_gpu_layers": -1, "offload_kqv": True},
                     # transform inputs into Llama2 format
                     messages_to_prompt=prompt_style.messages_to_prompt,
                     completion_to_prompt=prompt_style.completion_to_prompt,

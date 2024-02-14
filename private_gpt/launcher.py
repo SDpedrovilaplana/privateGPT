@@ -12,7 +12,9 @@ from private_gpt.server.embeddings.embeddings_router import embeddings_router
 from private_gpt.server.health.health_router import health_router
 from private_gpt.server.ingest.ingest_router import ingest_router
 from private_gpt.settings.settings import Settings
-
+###
+from pyngrok import ngrok
+###
 logger = logging.getLogger(__name__)
 
 
@@ -30,7 +32,10 @@ def create_app(root_injector: Injector) -> FastAPI:
     app.include_router(ingest_router)
     app.include_router(embeddings_router)
     app.include_router(health_router)
-
+    ### necesito settear la Auth Token the ngrok antes en colab
+    public_url = ngrok.connect("8001").public_url
+    logger.info("ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, "8001"))
+    ### 
     settings = root_injector.get(Settings)
     if settings.server.cors.enabled:
         logger.debug("Setting up CORS middleware")

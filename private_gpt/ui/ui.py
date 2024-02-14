@@ -18,15 +18,15 @@ from private_gpt.server.chat.chat_service import ChatService, CompletionGen
 from private_gpt.server.chunks.chunks_service import Chunk, ChunksService
 from private_gpt.server.ingest.ingest_service import IngestService
 from private_gpt.settings.settings import settings
-from private_gpt.ui.images import logo_svg
+from private_gpt.ui.images import logo_sisua_svg
 
 logger = logging.getLogger(__name__)
 
 THIS_DIRECTORY_RELATIVE = Path(__file__).parent.relative_to(PROJECT_ROOT_PATH)
 # Should be "private_gpt/ui/avatar-bot.ico"
-AVATAR_BOT = THIS_DIRECTORY_RELATIVE / "avatar-bot.ico"
+AVATAR_BOT = THIS_DIRECTORY_RELATIVE / "sd_green_big.ico"
 
-UI_TAB_TITLE = "My Private GPT"
+UI_TAB_TITLE = "SISUA GPT"
 
 SOURCES_SEPARATOR = "\n\n Sources: \n"
 
@@ -219,14 +219,14 @@ class PrivateGptUi:
             "justify-content: center;"
             "align-items: center;"
             "}"
-            ".logo img { height: 25% }"
+            ".logo img { height: 100% }"
             ".contain { display: flex !important; flex-direction: column !important; }"
             "#component-0, #component-3, #component-10, #component-8  { height: 100% !important; }"
             "#chatbot { flex-grow: 1 !important; overflow: auto !important;}"
             "#col { height: calc(100vh - 112px - 16px) !important; }",
         ) as blocks:
             with gr.Row():
-                gr.HTML(f"<div class='logo'/><img src={logo_svg} alt=PrivateGPT></div")
+                gr.HTML(f"<div class='logo'/><img src={logo_sisua_svg} width='250' height='200' alt='PrivateGPT'></div")
 
             with gr.Row(equal_height=False):
                 with gr.Column(scale=3):

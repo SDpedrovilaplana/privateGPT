@@ -1,0 +1,3 @@
+server:
+  port: ${PORT:5000}
+  pyngrok_key: 2bpPUMOz5wf4p8MZk7PsAW23gCS_e6zwwA8uMM5nXZBbtEEK
